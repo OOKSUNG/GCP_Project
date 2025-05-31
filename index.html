@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>청년 정책 모음</title>
+    <style>
+        .region {
+            margin: 10px 0;
+            padding: 10px;
+            background: #eee;
+        }
+
+        #noResult {
+            color: red;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function searchLinks() {
+            const input = document.getElementById("searchBox").value.toLowerCase().trim();
+            const regions = document.querySelectorAll(".region");
+
+            if (!input) {
+                regions.forEach(region => region.style.display = "");
+                removeNoResultMsg();
+                return;
+            }
+
+            let visibleCount = 0;
+
+            regions.forEach(region => {
+                const text = region.textContent.toLowerCase();
+                if (text.includes(input)) {
+                    region.style.display = "";
+                    visibleCount++;
+                } else {
+                    region.style.display = "none";
+                }
+            });
+
+            if (visibleCount === 0) {
+                showNoResultMsg();
+            } else {
+                removeNoResultMsg();
+            }
+        }
+
+        function showNoResultMsg() {
+            if (!document.getElementById("noResult")) {
+                const div = document.createElement("div");
+                div.id = "noResult";
+                div.textContent = "검색 결과가 없습니다.";
+                document.body.appendChild(div);
+            }
+        }
+
+        function removeNoResultMsg() {
+            const msg = document.getElementById("noResult");
+            if (msg) msg.remove();
+        }
+    </script>
+</head>
+
+<body>
+    <h1>경기도 청년 정책 링크 모음</h1>
+    <input type="text" id="searchBox" onkeyup="searchLinks()" placeholder="검색어 입력" />
+    <div class="region">
+        <h3>전국대상사업</h3>
+        <a href="https://www.work24.go.kr" class="hashtag">첨단산업·디지털 핵심 실무인재 양성훈련(K-디지털 트레이닝)</a>
+        <h6>#일자리 #일자리교육 #it업계</h6>
+    </div>
+    <div class="region">
+        <h3>경기도 대상 사업</h3>
+        <a href="https://ggbaro.kr/web/index.do" class="hashtag">경기도 청년 푸드창업 지원 허브</a>
+        <h6>#창업 #요식업</h6>
+        <a href="https://aict.snu.ac.kr/" class="hashtag">반도체 산업 전문인력 양성사업</a>
+        <h6>#일자리 #일자리교육 #it업계</h6>
+    </div>
+    <div class="region">
+        <h3>부천시 대상 사업</h3>
+        <a href="https://apply.jobaba.net/bsns/bsnsDetailView.do?bsnsSeq=4198" class="hashtag">부천시 취업용 증명사진 지원</a>
+        <h6>#취업지원</h6>
+    </div>
+    <div class="region">
+        <h3>의왕시 대상 사업</h3>
+        <a href="https://apply.jobaba.net/bsns/bsnsDetailView.do?bsnsSeq=4018" class="hashtag">의왕시 청년옷장</a>
+        <h6>#취업지원</h6>
+        <a href="https://apply.jobaba.net/bsns/bsnsDetailView.do?bsnsSeq=4019" class="hashtag">의왕시 청년 취업사진 지원</a>
+        <h6>#취업지원</h6>
+        <a href="https://www.uiwang.go.kr/UWKORCOM1023" class="hashtag">의왕시 청년 인재등록</a>
+        <h6>#일자리_연계</h6>
+    </div>
+    <div class="region">
+        <h3>화성시 대상 사업</h3>
+        <a href="https://apply.jobaba.net/bsns/bsnsDetailView.do?bsnsSeq=4066" class="hashtag">2025 화성시 청년활동 포인트제</a>
+        <h6>#지원금</h6>
+    </div>
+</body>
+
+</html>
